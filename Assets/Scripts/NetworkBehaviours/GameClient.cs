@@ -32,14 +32,10 @@ public class GameClient : Client
 
         new Client_CardMessageHandler(this);
 
-        AddMessageHandler(NetworkProtocal.SerevrNotification, NotificationHandler);
-
+        new Client_NotificationMessageHandlerClass(this);
     }
 
-    private void NotificationHandler(MessageBase _msg, NetworkConnection _connection)
-    {
-       StartCoroutine( GameScene.Active.ShowPlayerMessage("Server Notification"+ (_msg as ServerNotificationMessage).notification));
-    }
+ 
 
     public override void UnregisterMessageHandlerClasses()
     {
