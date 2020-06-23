@@ -26,6 +26,8 @@ public static class NetworkProtocal
     public static byte EndTurnMessage = 9;
     
     public static byte StartTurnMessage = 10;
+
+    public static byte SerevrNotification = 11;
 }
 
 [System.Serializable]
@@ -121,6 +123,13 @@ public class StartTurnMessage : MessageBase
 public class RequestEndTurnMessage : MessageBase
 {
     public RequestEndTurnMessage() { Type = NetworkProtocal.RequestEndTurnMessage; }
+}
+
+[System.Serializable]
+public class ServerNotificationMessage: MessageBase
+{
+    public ServerNotificationMessage() { Type = NetworkProtocal.SerevrNotification; }
+    public string notification;
 }
 
 

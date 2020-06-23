@@ -24,6 +24,12 @@ public class Server_CardMessagesHandler : MessagesHandlerClass
             BroadcastMoveCardMessgae(server.players[playerIndex].guid, _moveCardMessgae.cardGuid, _moveCardMessgae.from_ZoneId, _moveCardMessgae.to_ZoneId);
 
             server.madeMoves++;
+
+            //ADDED PORTION
+            server.SendToClient(_connection, new ServerNotificationMessage()
+            {
+                notification = "You played a card"
+            });
         }
         else UnityEngine.Debug.Log(server.LogPrefix + "Illigal move detected");
     }

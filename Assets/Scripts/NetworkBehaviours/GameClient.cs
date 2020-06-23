@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
+using Unity.Networking.Transport;
 
 public class GameClient : Client
 {
@@ -30,7 +32,13 @@ public class GameClient : Client
 
         new Client_CardMessageHandler(this);
 
+        AddMessageHandler(NetworkProtocal.SerevrNotification, NotificationHandler);
 
+    }
+
+    private void NotificationHandler(MessageBase _msg, NetworkConnection _connection)
+    {
+       StartCoroutine( GameScene.Active.ShowPlayerMessage("Server Notification"+ (_msg as ServerNotificationMessage).notification));
     }
 
     public override void UnregisterMessageHandlerClasses()
